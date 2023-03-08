@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Test Jquery</title>
+
+    <script src="Scripts/jquery-3.4.1.js" type="text/javascript"></script>
+
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">-->
+
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <style type="text/css">
+        .painter {
+            color: white;
+            background-color: orange;
+        }
+
+        .oddRow {
+            background-color: #00ffff;
+        }
+
+        .evenROW {
+            background-color: #ffffff;
+        }
+
+        .overRow {
+            background-color: #00ff90;
+        }
+    </style>
+    <script>
+        //1 คำสั่ง alert
+        $(document).ready(function () {
+            $("#cmdOK").click(
+                function () {
+                    swal({
+                        title: "ยืนยันอีกครั้ง",
+                        text: "กรุณาพิมรหัสก่อนทำรายการ ยืนยันหรือยกเลิก!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+
+                    })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                swal("ยืนยันเสร็จสิ้น!", {
+                                    icon: "success",
+                                });
+                            } else {
+                                swal("ยกเลิกเสร็จสิ้น!");
+                            }
+                        });
+                }
+            )
+        });
+
+    </script>
+    <script>
+        //2 คำสั่ง alert div1
+        $(document).ready(function () {
+            $("#button1").click(
+                function () {
+                    var i = $("#div1").text();
+                    var i = $("#div1").html();
+                    alert(i);
+                    alert(j);
+                }
+            )
+        });
+    </script>
+
+    <script>
+        //3 คำสั่ง alert หลาย element
+        $(function () {
+            $("input[id$=button2]").click(function (e) {
+                $("#p1").text("hello jquery")
+            });
+        });
+        $(function () {
+            $("input[id$=button3]").click(function (e) {
+                $("p").text("เปลี่ยนข้อความใน element p")
+            });
+        });
+        $(function () {
+            $("input[id$=button4]").click(function (e) {
+                $("p,div").css("color", "red");
+                $("p,div").css("background-color", "black");
+            });
+        });
+        $(function () {
+            $("input[id$=button5]").click(function (e) {
+                $(".BackgroundPainter").css("color", "black")
+            });
+        });
+
+    </script>
+
+    <script>
+        //4 คำสั่ง before หลาย after
+        $(function () {
+            $("#btn-after").click(function (e) {
+                $("#div3").after("<div> ข้อความแบบ After </div>")
+            });
+        });
+        $(function () {
+            $("#btn-before").click(function (e) {
+                $("#div3").before("<div> ข้อความแบบ Before </div>")
+            });
+        });
+        $(function () {
+            $("#btn-insert-after").click(function (e) {
+                $("<div> เพิ่มข้อความแบบ After </div>").insertAfter("#div3")
+            });
+        });
+        $(function () {
+            $("#btn-insert-before").click(function (e) {
+                $("<div> เพิ่มข้อความแบบ Before </div>").insertBefore("#div3")
+            });
+        });
+
+
+        $(function () {
+            $("#btn-insert-first").click(function () {
+                $("#div3 > div:first-child").after("<div> แทรกข้อความ 1 </div>")
+            });
+        });
+        $(function () {
+            $("#btn-insert-last").click(function () {
+                $("#div3 > div:last-child").before("<div> แทรกข้อความ2 </div>")
+            });
+        });
+
+    </script>
+
+    <script>
+        //5 คำสั่ง hide & show
+        $(function () {
+            $("#btn-hide").click(function () {
+                $("#div4").hide();
+            }
+            )
+        });
+
+        $(function () {
+            $("#btn-show").click(function () {
+                $("#div4").show();
+            }
+            )
+        });
+
+        $(function () {
+            $("#btn-hide-and-show").click(function () {
+                $("#div4").toggle(1000);
+            }
+            )
+        });
+    </script>
+
+    <script>
+        //6 คำสั่ง เพิ่มและลบ class
+        $(function () {
+            $("#btn-add-class").click(function () {
+                $("#div5").addClass("painter");
+            }
+            )
+        });
+
+        $(function () {
+            $("#btn-remove-class").click(function () {
+                $("#div5").removeClass("painter");
+            }
+            )
+        });
+
+        $(function () {
+            $("#btn-toggle-class").click(function () {
+                $("#div5").toggleClass("painter");
+            }
+            )
+        });
+    </script>
+
+    <script>
+        //7 คำสั่ง alert div1
+        $(function () {
+            $("#myTable tr:odd").addClass("oddRow");
+            $("#myTable tr:even").addClass("evenRow");
+            $("#myTable tr").mouseover(function () {
+                $(this).addClass("overRow");
+            }).mouseout(function () {
+                $(this).removeClass("overRow");
+            });
+        });
+    </script>
+
+    <script>
+        //8 data table
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+</head>
+<body>
+    <h1>Hello world</h1>
+    <!-- 1 -->
+    <h3>คำสั่ง alert</h3>
+
+    <input id="cmdOK" type="button" value="OK" />
+
+    <!-- 2 -->
+    <h3>คำสั่ง alert ข้อความจาก div1 </h3>
+    <div id="div1"> เรียกคำสั่งจาก div1 มาแสดง</div>
+    <input id="button1" type="button" value="อ่านข้อมูลจาก element" />
+
+    <!-- 3 -->
+    <h3>คำสั่ง alert ข้อความจาก div1 </h3>
+    <div id="div1"> เรียกคำสั่งจาก div1 มาแสดง</div>
+
+    <input id="button2" type="button" value="เปลี่ยนข้อความโดยระบุ id" />
+    <input id="button3" type="button" value="เปลี่ยนข้อความด้วย element p" />
+    <input id="button4" type="button" value="เปลี่ยนสีหลาย element" />
+    <input id="button5" type="button" value="เปลี่ยนข้อมูลจาก class" />
+    <p id="p1">ข้อความของ p1</p>
+    <p id="p2" class="BackgroundPainter">ข้อความของ p2 </p>
+    <div id="div2">
+        <p class="BackgroundPainter">ข้อความของ div2 </p>
+    </div>
+    <!-- 4 -->
+
+    <h3>การทำ before และ after</h3>
+
+    <input id="btn-after" type="button" value="เพิ่ม after" />
+    <input id="btn-before" type="button" value="เพิ่ม before" />
+    <input id="btn-insert-after" type="button" value="เพิ่ม insert-after" />
+    <input id="btn-insert-before" type="button" value="เพิ่ม insert-before" />
+    <input id="btn-insert-first" type="button" value="แทรก first-child" />
+    <input id="btn-insert-last" type="button" value="แทรก last-child" />
+
+    <div id="div3">
+
+        <div>ข้อความของ div-3.1</div>
+        <div>ข้อความของ div-3.2</div>
+        <div>ข้อความของ div-3.3</div>
+
+    </div>
+
+    <!-- 5 -->
+
+    <h3>การทำ hide และ show</h3>
+
+    <input id="btn-hide" type="button" value="ซ่อนข้อมูล div4" />
+    <input id="btn-show" type="button" value="โชว์ข้อมูล div4" />
+    <input id="btn-hide-and-show" type="button" value="ซ่อน/โชว์ข้อมูล div4" />
+
+    <div id="div4">
+
+        <div>โชว์ข้อความของ div4</div>
+
+    </div>
+
+    <!-- 6 -->
+    <h3>การเพิ่มและลบ class</h3>
+
+    <input id="btn-add-class" type="button" value="เพิ่มclass div5" />
+    <input id="btn-remove-class" type="button" value="ลบclass div5" />
+    <input id="btn-toggle-class" type="button" value="ซ่อน/โชว์class div5" />
+
+    <div id="div5">
+
+        <div>ข้อความของ div5</div>
+
+    </div>
+
+    <!-- 7 -->
+
+    <h3>การเพิ่มและลบ class</h3>
+
+    <input id="btn-add-class" type="button" value="เพิ่มclass div5" />
+    <input id="btn-remove-class" type="button" value="ลบclass div5" />
+    <input id="btn-toggle-class" type="button" value="ซ่อน/โชว์class div5" />
+
+    <div id="div5">
+
+        <div>ข้อความของ div5</div>
+
+    </div>
+
+    <!-- 8 -->
+    <h3>ทำสีตาราง</h3>
+    <table class="table" id="myTable" style="width:50%;">
+        <thead>
+            <tr>
+                <th>รหัสสินค้า</th>
+                <th>ชื่อสินค้า</th>
+                <th>ราคา</th>
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>db Programming </td>
+                    <td>250</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>Advance Progamming</td>
+                    <td>429</td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>การใช้าน ASP.NET</td>
+                    <td>168</td>
+                </tr>
+            </tbody>
+    </table>
+
+</body>
+
+</html>
